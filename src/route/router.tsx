@@ -1,12 +1,16 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import AppLayout from "../layout/layout.tsx";
+import AppLayout from "../layout/layout";
+import Home from "../pages/Home";
+import NotFound from "../pages/NotFound";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <AppLayout />, 
+    element: <AppLayout />,
     children: [
+      { index: true, element: <Home /> },                 
+      { path: "*", element: <NotFound /> },          
     ],
   },
 ]);
