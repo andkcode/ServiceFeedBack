@@ -17,14 +17,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 320px;
   min-height: 100vh;
   background-color: #000000;
   color: #ffffff;
 }
 
 #root {
-  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -43,6 +41,7 @@ a {
   border-bottom: 1px solid #ffffff33;
   transition: color 0.3s ease, border-color 0.3s ease;
 }
+
 a:hover {
   color: #cccccc;
   border-color: #ffffff88;
@@ -76,8 +75,3 @@ button:hover {
   transform: translateY(-4px);
 }
 
-.read-the-docs {
-  color: #999999;
-  font-size: 0.9rem;
-  margin-top: 1.5rem;
-}
