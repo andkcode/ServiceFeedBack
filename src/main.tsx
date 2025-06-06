@@ -1,10 +1,15 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './styles/index.css'
-import MainView from './layout/MainView.tsx';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import {
+  RouterProvider,
+  createRouter,
+} from "@react-router/dev";
+import routes from "./routes";
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <MainView />
-  </StrictMode>,
-)
+const router = createRouter({ routes });
+
+ReactDOM.createRoot(document.getElementById("root")!).render(
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>
+);
