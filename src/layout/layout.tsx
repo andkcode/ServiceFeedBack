@@ -8,7 +8,7 @@ export default function AppLayout() {
     <div className="flex flex-col min-h-screen w-full bg-black text-white">
       <Header />
 
-      <main className="flex-grow flex justify-center px-4 min-h-screen">
+      <main className="flex-grow flex w-full items-center justify-center px-4 min-h-full">
           <Outlet />
       </main>
 
