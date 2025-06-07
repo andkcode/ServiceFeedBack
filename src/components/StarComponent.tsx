@@ -12,7 +12,7 @@ export default function FormComponent() {
         const isFilled = star <= (hover || rating); 
 
         return (
-          <span
+          <div
             key={star}
             onClick={() => setRating(star)}
             onMouseEnter={() => setHover(star)}
@@ -24,7 +24,7 @@ export default function FormComponent() {
             ) : (
               <CiStar className="text-gray-400 hover:text-yellow-400" />
             )}
-          </span>
+          </div>
         );
       })}
     </div>
