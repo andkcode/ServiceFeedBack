@@ -1,18 +1,15 @@
 import { createContext, useContext, ReactNode } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth as useAuthHook } from '../composables/useAuth'; 
+import { useProvideAuth } from '../composables/useProvideAuth'; // path may vary
 
-const AuthContext = createContext<ReturnType<typeof useAuthHook> | null>(null);
+const AuthContext = createContext<ReturnType<typeof useProvideAuth> | null>(null);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const navigate = useNavigate();
-  const auth = useAuthHook(navigate);
-
+  const auth = useProvideAuth();
   return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
-  if (!context) throw new Error('useAuth must be used within AuthProvider');
+  if (!context) throw new Error('useAuth must be used within an AuthProvider');
   return context;
 };
