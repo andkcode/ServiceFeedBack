@@ -5,7 +5,5 @@ import router from "./route/router";
 import "./styles/index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <AuthProvider>
-      <RouterProvider router={router} />
-  </AuthProvider>
+  <RouterProvider router={router} />
 );
