@@ -5,10 +5,14 @@ import { Outlet } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 
 export default function AppLayout() {
-  const notify = () => toast("Wow so easy!");
+  const location = useLocation();
+  const { logout } = useAuth();
+  const hideLayout = ["/login", "/register"].includes(location.pathname);
+
   return (
     <div className="flex flex-col min-h-screen w-full bg-black text-white">
-      <Header />
+      {!hideLayout && <Header />}
+      
       <ToastContainer
         position="top-right"
         autoClose={3000}
@@ -26,7 +30,7 @@ export default function AppLayout() {
           <Outlet />
       </main>
 
-      <Footer />
+      {!hideLayout && <Footer />}
     </div>
   );
 }
