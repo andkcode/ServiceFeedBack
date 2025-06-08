@@ -33,7 +33,6 @@ export default function AppLayout() {
       {!hideLayout && <IoMdExit onClick={logout} className='absolute top-4 right-4 text-3xl cursor-pointer'/>}
 
       <main className="flex-grow flex w-full items-center justify-center px-4 min-h-full">
-        <button onClick={notify}>Notify!</button>
           <Outlet />
       </main>
 
