@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
 
 
 interface AuthResponse {
     token: string;
     message?: string;
 }
-export const useAuth = (navigate: ReturnType<typeof useNavigate>) => {
+export const useProvideAuth = () => {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
@@ -104,52 +103,7 @@ export const useAuth = (navigate: ReturnType<typeof useNavigate>) => {
             },
           };
         };
-
-const forgotPassword = async (emailToSend: string): Promise<void> => {
-    try {
-        await axios.post<AuthResponse>('http://localhost:8080/auth/forgot-password', { email: emailToSend });
-
-        toast('Reset link sent', {
-            description: 'Check your email for a reset link',
-            duration: 3000,
-            position: 'top-right',
-            type: 'success',
-        });
-    } catch (error: any) {
-        console.error("Forgot password error:", error);
-        toast('Failed to send reset link', {
-            description: error.response?.data?.message || 'Unknown error',
-            duration: 3000,
-            position: 'top-right',
-            type: 'error',
-        });
-    }
-};
-
-const resetPassword = async (newt: string, newp: string): Promise<void> => {
-    try {
-        await axios.post<AuthResponse>('http://localhost:8080/auth/reset-password', {
-            newToken: newt,
-            newPassword: newp
-        });
-
-        toast('Password reset successful', {
-            duration: 2000,
-            position: 'top-right',
-            type: 'success',
-        });
-
-    } catch (error: any) {
-        console.error("Reset password error:", error);
-        toast('Failed to reset password', {
-            description: error.response?.data?.message || 'Unknown error',
-            duration: 2000,
-            position: 'top-right',
-            type: 'error',
-        });
-    }
-};
-
+        
 return {
     isAuthenticated,
     username,
@@ -160,8 +114,6 @@ return {
     logout,
     refreshAuth,
     getAuthHeader,
-    forgotPassword,
-    resetPassword,
     setUsername,
     setPassword
   };
