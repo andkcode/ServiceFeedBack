@@ -1,6 +1,18 @@
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
+import { CustomToast } from "../components/CustomToast";
 
-export const notifySuccess = (message: string) => toast.success(`✅ ${message}`);
-export const notifyError = (message: string) => toast.error(`❌ ${message}`);
-export const notifyInfo = (message: string) => toast.info(`ℹ️ ${message}`);
-export const notifyWarn = (message: string) => toast.warn(`⚠️ ${message}`);
+export const notify = (type: "success" | "error" | "info" | "warning", title: string, description?: string) => {
+  toast(({ closeToast }) => (
+    <CustomToast type={type}
+    title={title}
+    description={description}
+    closeToast={closeToast} />
+  ), {
+    position: "top-right",
+    autoClose: 3000,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    hideProgressBar: false,
+  });
+};
