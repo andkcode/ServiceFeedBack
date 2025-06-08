@@ -8,7 +8,7 @@ interface AuthResponse {
     token: string;
     message?: string;
 }
-export const useAuth = () => {
+export const useAuth = (navigate: ReturnType<typeof useNavigate>) => {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
