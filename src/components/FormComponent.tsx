@@ -1,5 +1,17 @@
+import { useState, useEffect } from 'react';
 import StarComponent from './StarComponent';
+import FeedbackService from '../composables/FeedbackService';
 
+interface Feedback {
+  id?: number;
+  comment?: string;
+  mark?: number;
+  createdAt?: string;
+  createdBy?: string;
+}
+interface FormProps {
+  onFeedbackSubmitted: () => void;
+}
 
 export default function FormComponent() {
 
