@@ -12,6 +12,23 @@ interface Feedback {
 }
 
 export default function Home() {
+  const [feedbacks, setFeedbacks] = useState<Feedback[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const getAllFeedbacks = async () => {
+    try {
+      const allFeedbacks = await FeedbackService.getAllFeedbacks();
+      setFeedbacks(allFeedbacks);
+    } catch (error: any) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getAllFeedbacks();
+  }, []);
 
   return (
     <div className="flex flex-col min-h-full w-full items-center justify-center">
