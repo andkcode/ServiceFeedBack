@@ -32,9 +32,8 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-full w-full items-center justify-center">
-    <FormComponent/>
+      <FormComponent onFeedbackSubmitted={getAllFeedbacks} />
+      <Feedbacks feedbacks={feedbacks} loading={loading} />
     </div>
-  )
+  );
 }
-
-
