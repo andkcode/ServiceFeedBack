@@ -1,35 +1,71 @@
 import { useAuth } from '../../context/AuthContext';
-
+import { Link } from 'react-router-dom';
 
 export default function LoginPage() {
   const { login, username, setUsername, password, setPassword } = useAuth();
 
+  const handleLogin = (e) => {
+    e.preventDefault();
+    login(username, password);
+  };
+
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center px-4">
-      <div className=" text-white w-full max-w-md p-8 rounded-2xl shadow-lg space-y-6 border-gray-700 border-2">
-        <h1 className="text-3xl font-bold text-center">Login</h1>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          className="w-full p-3 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-black"
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full p-3 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-black"
-        />
-        <button
-          onClick={(e) => login(username, password)}
-          className="w-full bg-black text-white py-3 rounded-md hover:bg-gray-900 transition duration-200"
-        >
-          Login
-        </button>
-        <p className="text-center text-sm"> Don't have an account? <a href="/register" className="underline">Register</a>
-        </p>
+    <div className="min-h-screen flex items-center justify-center px-4">
+      <div className="w-full max-w-md bg-neutral-900 border border-neutral-800 p-8 rounded-2xl shadow-lg">
+
+        <div className="flex flex-col items-center mb-1">
+          <img
+            src="/src/assets/logo.png"
+            alt="Logo"
+            className="h-20 w-20 invert"
+          />
+          <h1 className="mt-4 text-white text-xl font-semibold">Welcome Back</h1>
+        </div>
+
+
+        <form onSubmit={handleLogin} className="space-y-5">
+          <div>
+            <label className="block text-sm text-neutral-400 mb-1">
+              Username
+            </label>
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="w-full px-4 py-3 rounded-lg bg-neutral-800 text-white placeholder-neutral-500 border border-neutral-700 focus:outline-none focus:border-white"
+              placeholder="@username"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm text-neutral-400 mb-1">
+              Password
+            </label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full px-4 py-3 rounded-lg bg-neutral-800 text-white placeholder-neutral-500 border border-neutral-700 focus:outline-none focus:border-white"
+              placeholder="••••••••"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full mt-3 bg-neutral-900 text-white font-semibold py-3 rounded-lg hover:bg-neutral-600 transition-colors"
+          >
+            Log In
+          </button>
+        </form>
+
+        <div className="flex justify-center mt-5">
+          <Link
+            to="/register"
+            className="text-sm text-neutral-400 hover:text-white transition-colors"
+          >
+            Don’t have an account?
+          </Link>
+        </div>
       </div>
     </div>
   );
