@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { CiStar } from "react-icons/ci";
-import { FaStar } from "react-icons/fa"; // Solid star for filled effect
+import { FaStar } from "react-icons/fa";
 
-export default function FormComponent() {
-  const [rating, setRating] = useState(0);
+interface StarComponentProps {
+  mark: number | null;
+  setMark: (mark: number) => void;
+}
+
+export default function StarComponent({ mark, setMark }: StarComponentProps) {
   const [hover, setHover] = useState(0);
 
   return (
