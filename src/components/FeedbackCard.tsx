@@ -14,25 +14,31 @@ const FeedbackCard: React.FC<FeedbackCardProps> = ({
   createdAt,
   createdBy,
 }) => {
-  const formattedDate = createdAt ? new Date(createdAt).toLocaleDateString() : 'No date provided.';
+  const formattedDate = createdAt
+    ? new Date(createdAt).toLocaleDateString()
+    : 'No date';
+
+  const getMarkStyle = () => {
+    if (mark === undefined) return 'bg-neutral-700 text-neutral-300';
+    if (mark >= 4) return 'bg-green-700/20 text-green-400';
+    if (mark >= 3) return 'bg-yellow-700/20 text-yellow-400';
+    return 'bg-red-700/20 text-red-400';
+  };
+
   return (
-    <div className="flex flex-col w-[50rem] bg-white border border-gray-300 rounded-2xl shadow-lg p-6 space-y-4 hover:shadow-xl transition-all duration-300">
+    <div className="w-[45rem] bg-neutral-900 border border-neutral-800 rounded-2xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300 space-y-4">
       <div className="flex justify-between items-center">
-        <span className="text-lg font-semibold text-gray-800">{createdBy}</span>
-        <span className="text-sm text-gray-500">{formattedDate}</span>
+        <span className="text-base font-medium text-white">{createdBy || 'Anonymous'}</span>
+        <span className="text-sm text-neutral-400">{formattedDate}</span>
       </div>
-      <p className="text-gray-700">{comment || "No comment provided."}</p>
+
+      <p className="text-neutral-300">{comment || 'No comment provided.'}</p>
+
       <div className="flex justify-end">
         <span
-          className={`text-sm font-medium px-3 py-1 rounded-full ${
-            mark && mark >= 4
-              ? 'bg-green-100 text-green-700'
-              : mark && mark >= 2
-              ? 'bg-yellow-100 text-yellow-700'
-              : 'bg-red-100 text-red-700'
-          }`}
+          className={`text-sm font-medium px-3 py-1 rounded-full ${getMarkStyle()}`}
         >
-          {mark ? `Mark: ${mark}/5` : 'No mark'}
+          {mark !== undefined ? `Mark: ${mark}/5` : 'No mark'}
         </span>
       </div>
     </div>
